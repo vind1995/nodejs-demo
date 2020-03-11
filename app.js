@@ -1,0 +1,49 @@
+let express = require('express');
+let app = express();
+
+// app.set('view engine','jade');
+
+app.get('/',function(req,res) {
+  console.log("Express running...")
+  res.status(200).json({new: "Service running...."})
+});
+
+app.get('/username',function(req,res) {
+  console.log("Express running username...")
+  res.status(200).json("Vinit Devani")
+});
+
+const PORT = 3000;
+
+app.listen(PORT,function()  {
+  try {
+    console.log(`Server listening on port ${PORT}`);
+  } catch (err) {
+    console.log("Server init error", err);
+  }
+});
+
+
+let Arithmetic = require('./Arithmetic.js');
+let ExtendArithmetic = require('./Extend.js');
+
+console.log("Addition:-", Arithmetic.AddNumber(1,2));
+console.log("Subtraction:-", Arithmetic.SubtractNumber(10,5));
+console.log("Multiply:-", Arithmetic.MultiplyNumber(10,5));
+
+/* Extend Arithmetic */
+console.log("Extend Addition:-", ExtendArithmetic.AddNumber(10, 50));
+ExtendArithmetic.CheckValueOddOrEven(55)
+ExtendArithmetic.CheckValueOddOrEven(60)
+// ExtendArithmetic.AdvanceArithmetic.Addition()
+// Extend.AdvanceArithmetic.Subtraction()
+
+
+/*
+npm install express –global
+npm list --global
+npm install underscore@1.7.0
+npm update underscore
+npm search express
+npm uninstall express
+*/
