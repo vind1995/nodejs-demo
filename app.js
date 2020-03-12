@@ -13,6 +13,12 @@ app.get('/username',function(req,res) {
   res.status(200).json("Vinit Devani")
 });
 
+app.get('/user/username',function(req,res) {
+  console.log("Express running username...")
+  res.status(200).json("Vinit Devani 123")
+});
+
+
 const PORT = 3000;
 
 app.listen(PORT,function()  {
@@ -24,19 +30,22 @@ app.listen(PORT,function()  {
 });
 
 
-let Arithmetic = require('./Arithmetic.js');
+
 let ExtendArithmetic = require('./Extend.js');
 
-console.log("Addition:-", Arithmetic.AddNumber(1,2));
-console.log("Subtraction:-", Arithmetic.SubtractNumber(10,5));
-console.log("Multiply:-", Arithmetic.MultiplyNumber(10,5));
+console.log("Addition:-", ExtendArithmetic.AddNumber(1,2));
+console.log("Subtraction:-", ExtendArithmetic.SubtractNumber(10,5));
+console.log("Multiply:-", ExtendArithmetic.MultiplyNumber(10,5));
+console.log("Multiply:-", ExtendArithmetic.CheckValueOddOrEven(10));
 
 /* Extend Arithmetic */
 console.log("Extend Addition:-", ExtendArithmetic.AddNumber(10, 50));
 ExtendArithmetic.CheckValueOddOrEven(55)
 ExtendArithmetic.CheckValueOddOrEven(60)
+
 // ExtendArithmetic.AdvanceArithmetic.Addition()
 // Extend.AdvanceArithmetic.Subtraction()
+
 
 
 /*
