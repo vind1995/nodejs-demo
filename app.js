@@ -1,4 +1,5 @@
 let express = require('express');
+let EventEmitter = require('./EventEmitter');
 let app = express();
 
 // app.set('view engine','jade');
