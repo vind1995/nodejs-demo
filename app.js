@@ -2,11 +2,11 @@ let express = require('express');
 let EventEmitter = require('./EventEmitter');
 let app = express();
 
-// app.set('view engine','jade');
+app.set('view engine','jade');
 
 app.get('/',function(req,res) {
   console.log("Express running...")
-  res.status(200).json({new: "Service running...."})
+  res.render('StudentList', { studentList: [ { StudentName: "Test 1" }, { StudentName: "Test 2" } ] });
 });
 
 app.get('/username',function(req,res) {
