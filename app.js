@@ -1,6 +1,8 @@
 let express = require('express');
-let EventEmitter = require('./EventEmitter');
+// require('./EventEmitter');
 let app = express();
+
+require( "./mongoose" )( app );
 
 app.set('view engine','jade');
 
