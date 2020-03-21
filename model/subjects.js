@@ -2,17 +2,15 @@ const mongoose = require( "mongoose" );
 
 const Schema = mongoose.Schema;
 
-const userSchema= new Schema({
-  userId: {
+const Subjects= new Schema({
+  name: {
     type:String,
     required:true,
     unique:true
   },
-  chips: { type:Number },
-  date: String,
-  isVerified: Boolean
+  description: String
 }, {
   timestamps: true,
 });
 
-module.exports = mongoose.model('Users',userSchema);
+module.exports = mongoose.model('Subjects',Subjects);

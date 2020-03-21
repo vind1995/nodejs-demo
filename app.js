@@ -2,7 +2,9 @@ let express = require('express');
 // require('./EventEmitter');
 let app = express();
 
-require( "./mongoose" )( app );
+require( "./dbConnect" )( app );
+require( "./query/mongoose" );
+require( "./query/populate" );
 
 app.set('view engine','jade');
 

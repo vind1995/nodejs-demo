@@ -1,4 +1,4 @@
-require( "./userSchema" );
+require( "../model/users" );
 const mongoose = require( "mongoose" );
 
 const Users = mongoose.model( "Users" );
@@ -9,37 +9,8 @@ const Users = mongoose.model( "Users" );
 >> Delete	 remove(), findOneAndRemove(), findByIdAndRemove()
 */
 
-module.exports = function( app ) {
-  try {
-    mongoose.connect( 'mongodb://localhost:27017/myapp', { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false });
-    mongoose.set('useCreateIndex', true);
-    mongoose.Promise = global.Promise;
-
-    // Handle Ctrl + C
-    process.on( "SIGINT", () => shutdown('SIGINT') );
-    process.on( "SIGTERM", () => shutdown('SIGTERM') );
-    process.on('uncaughtException', () => shutdown('uncaughtException'));
-
-    console.log("Mongoose connection  open");
-
-    if ( app ) {
-      app.set( "mongoose", mongoose );
-    }
-  } catch (error) {
-    console.log(error)
-  }
-};
-
-function shutdown(signal) {
-  mongoose.connection.close( function( ) {
-    console.log("Mongo connection terminate via", signal);
-    process.exit( 0 );
-  } );
-}
-
-
 // create user documents
-for (let i=1; i<20; i++) {
+/*for (let i=1; i<20; i++) {
   const user = new Users({
     userId:`Alex ${i}`,
     chips:10000,
@@ -53,7 +24,7 @@ for (let i=1; i<20; i++) {
       console.log(result, "Document Save Done")
     }
   });
-}
+}*/
 
 // Find User document
 Users.findById('5e75c2f3e5046e2c6cca4857', 'userId chips').exec((err, result) => { console.log("findById:-", result) });
@@ -63,7 +34,7 @@ Users.findOne({ _id: "5e75c2f3e5046e2c6cca4857" }).select("chips userId").then(r
 
 // Find Multiple Users document
 Users.find({ chips: 10000 }).then(result => {
-  console.log("find Multiple Docs:- ", result)
+  console.log("find Multiple Docs:- ", result.length)
 }).catch(err => console.log("Find error :- ", err));
 
 
@@ -79,9 +50,9 @@ Users.replaceOne({ _id: '5e75c2f3e5046e2c6cca4857' }, { chips: 1000 }).exec((err
 Users.findByIdAndUpdate('5e75c2f3e5046e2c6cca4857', { $set: { chips: 5000 }}).exec((err, result) => { console.log("findByIdAndUpdate:-", result) });
 Users.updateOne({ chips: 5000 }, { chips: 1666 }).exec((err, result) => { console.log("updateOne:-", result) });
 Users.updateMany({ chips: 5000 }, { chips: 1666 }).exec((err, result) => { console.log("updateMany:-", result) });
-Users.update({ chips: { $lt:20000 } }, {chips:35000} , { multi:true }).then(result => {
+/*Users.update({ chips: { $lt:20000 } }, {chips:35000} , { multi:true }).then(result => {
   console.log("update Number of Records Effected", result);
-}).catch(err => console.log("update error :- ", err));
+}).catch(err => console.log("update error :- ", err));*/
 
 
 // Remove user documents
